@@ -2,12 +2,16 @@ import React from "react";
 import TimetableService from "../services/timrtableService";
 import StudentAuthService from "../services/studentAuthService";
 import { LessonWithSubject } from "../models/LessonWithSubject";
-
+import Day from "./Day";
+interface TimetableProps {
+  loading: boolean;
+  timetable: LessonWithSubject[] | null;
+}
 class Timetable extends React.Component {
   constructor(props: any) {
     super(props);
   }
-  state = {
+  state: TimetableProps = {
     loading: true,
     timetable: null,
   };
@@ -43,11 +47,84 @@ class Timetable extends React.Component {
     }
 
     if (!this.state.loading) {
+      const firstWeek:
+        | LessonWithSubject[]
+        | undefined = this.state.timetable?.filter((l) => l.week === 1);
+      const secondWeek:
+        | LessonWithSubject[]
+        | undefined = this.state.timetable?.filter((l) => l.week === 2);
       return (
         <div>
-          {(this.state.timetable! as LessonWithSubject[]).map((lesson) => (
-            <div>{JSON.stringify(lesson)}</div>
-          ))}
+          <h1>Перший тиждень</h1>
+          <div className="container">
+            <div className="row">
+              <Day
+                key={1}
+                nameOfDay={"Понеділок"}
+                lessons={firstWeek?.filter((l) => l.dayOfWeek === 1)!}
+              />
+              <Day
+                key={2}
+                nameOfDay={"Вівторок"}
+                lessons={firstWeek?.filter((l) => l.dayOfWeek === 2)!}
+              />
+              <Day
+                key={3}
+                nameOfDay={"Середа"}
+                lessons={firstWeek?.filter((l) => l.dayOfWeek === 3)!}
+              />
+              <Day
+                key={4}
+                nameOfDay={"Четвер"}
+                lessons={firstWeek?.filter((l) => l.dayOfWeek === 4)!}
+              />
+              <Day
+                key={5}
+                nameOfDay={"П'ятниця"}
+                lessons={firstWeek?.filter((l) => l.dayOfWeek == 5)!}
+              />
+              <Day
+                key={6}
+                nameOfDay={"Субота"}
+                lessons={firstWeek?.filter((l) => l.dayOfWeek === 6)!}
+              />
+            </div>
+          </div>
+          <h1>Другий тиждень</h1>
+          <div className="container">
+            <div className="row">
+              <Day
+                key={7}
+                nameOfDay={"Понеділок"}
+                lessons={secondWeek?.filter((l) => l.dayOfWeek === 1)!}
+              />
+              <Day
+                key={8}
+                nameOfDay={"Вівторок"}
+                lessons={secondWeek?.filter((l) => l.dayOfWeek === 2)!}
+              />
+              <Day
+                key={9}
+                nameOfDay={"Середа"}
+                lessons={secondWeek?.filter((l) => l.dayOfWeek === 3)!}
+              />
+              <Day
+                key={10}
+                nameOfDay={"Четвер"}
+                lessons={secondWeek?.filter((l) => l.dayOfWeek === 4)!}
+              />
+              <Day
+                key={11}
+                nameOfDay={"П'ятниця"}
+                lessons={secondWeek?.filter((l) => l.dayOfWeek == 5)!}
+              />
+              <Day
+                key={12}
+                nameOfDay={"Субота"}
+                lessons={secondWeek?.filter((l) => l.dayOfWeek === 6)!}
+              />
+            </div>
+          </div>
         </div>
       );
     }

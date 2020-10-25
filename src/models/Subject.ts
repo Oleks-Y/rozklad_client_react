@@ -1,6 +1,6 @@
 export interface SubjectDto {
   id: string;
-  Name: string;
+  name: string;
   teachers: string;
   lessonsZoom: LinkInfo[];
   labsZoom: LinkInfo[];

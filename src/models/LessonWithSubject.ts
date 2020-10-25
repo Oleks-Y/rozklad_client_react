@@ -5,6 +5,6 @@ export interface LessonWithSubject {
   subject: SubjectDto;
   week: number;
   dayOfWeek: number;
-  timeStart: number;
+  timeStart: string;
   type: string;
 }

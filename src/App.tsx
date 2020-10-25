@@ -11,7 +11,7 @@ function App() {
   const isAuthentificated = loginService.isAuthentificated();
   console.log(isAuthentificated);
   return (
-    //Todo add objectsid checks
+    //?Todo add objectsid checks
     <BrowserRouter>
       <Route exact path="/login" component={LoginLayout} />
       {/*<Route exact path="/site" component ={Site}/>*/}
